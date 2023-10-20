@@ -8,11 +8,7 @@ ScriptsOnlyBuild:
     - PlayerController
     Assembly-CSharp.dll:
     - BasicSpawner
-    - Bullet
-    - ControllerPrototype
-    - NetworkCharacterControllerPrototype
-    - PlayerAOIPrototype
-    - PlayerController
+    - FirstPersonCamera
     Fusion.Realtime.dll:
     - Fusion.Photon.Realtime.PhotonAppSettings
     Fusion.Runtime.dll:
@@ -116,6 +112,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 7282}
     - Class: 114
       Script: {instanceID: 7794}
+    - Class: 114
+      Script: {instanceID: 24202}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 135
@@ -585,7 +583,7 @@ ScriptsOnlyBuild:
     className: ToggleRunnerProvideInput
   - hash:
       serializedVersion: 2
-      Hash: 8154cf4e0d96374d51c4c1661fa156d3
+      Hash: 95652e168d09dd4a3d5c5b456ee21360
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: PlayerController
@@ -1273,7 +1271,13 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: f6e205459a7557219ccb317cca1b7641
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: FirstPersonCamera
   platform: 19
   scenePathNames:
   - Assets/Scenes/GamePlay.unity
-  playerPath: D:/Unity/Lab1/Output/Lab1.exe
+  playerPath: D:/Unity/NYCU-Metaverse/Output/Metaverse.exe

@@ -5,6 +5,10 @@ using Fusion;
 
 public enum InputButtons
 {
+    FORWARD,
+    BACKWARD,
+    LEFT,
+    RIGHT,
     JUMP,
     FIRE
 }
@@ -12,7 +16,4 @@ public enum InputButtons
 public struct NetworkInputData : INetworkInput
 {
     public NetworkButtons buttons;
-    // public double move;
-    // public double rotate;
-    public Vector3 movementInput;
 }

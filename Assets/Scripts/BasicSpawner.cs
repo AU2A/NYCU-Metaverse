@@ -16,6 +16,8 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
 
     private Dictionary<PlayerRef, NetworkObject> playerList = new Dictionary<PlayerRef, NetworkObject>();
 
+    private double move = 0.0, rotate = 0.0;
+
     private void Start()
     {
         StartGame(GameMode.AutoHostOrClient);
@@ -54,19 +56,11 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     public void OnInput(NetworkRunner runner, NetworkInput input)
     {
         var data = new NetworkInputData();
+        data.buttons.Set(InputButtons.FORWARD, Input.GetKey(KeyCode.W));
+        data.buttons.Set(InputButtons.BACKWARD, Input.GetKey(KeyCode.S));
+        data.buttons.Set(InputButtons.LEFT, Input.GetKey(KeyCode.A));
+        data.buttons.Set(InputButtons.RIGHT, Input.GetKey(KeyCode.D));
 
-        if (Input.GetKey(KeyCode.W))
-            data.movementInput += Vector3.forward;
-
-        if (Input.GetKey(KeyCode.S))
-            data.movementInput += Vector3.back;
-
-        if (Input.GetKey(KeyCode.A))
-            data.movementInput += Vector3.left;
-
-        if (Input.GetKey(KeyCode.D))
-            data.movementInput += Vector3.right;
-            
         data.buttons.Set(InputButtons.JUMP, Input.GetKey(KeyCode.Space));
         data.buttons.Set(InputButtons.FIRE, Input.GetKey(KeyCode.Mouse0));
         input.Set(data);

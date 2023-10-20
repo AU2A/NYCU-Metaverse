@@ -410,6 +410,7 @@
 "Assets/Photon/PhotonLibs/WebSocket/WebSocket.cs"
 "Assets/Scripts/BasicSpawner.cs"
 "Assets/Scripts/Bullet.cs"
+"Assets/Scripts/FirstPersonCamera.cs"
 "Assets/Scripts/NetworkInputData.cs"
 "Assets/Scripts/PlayerController.cs"
 -langversion:9.0
