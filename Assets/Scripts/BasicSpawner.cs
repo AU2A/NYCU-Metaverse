@@ -16,8 +16,6 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
 
     private Dictionary<PlayerRef, NetworkObject> playerList = new Dictionary<PlayerRef, NetworkObject>();
 
-    private double move = 0.0, rotate = 0.0;
-
     private void Start()
     {
         StartGame(GameMode.AutoHostOrClient);

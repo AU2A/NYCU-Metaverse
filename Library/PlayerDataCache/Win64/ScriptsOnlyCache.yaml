@@ -8,7 +8,6 @@ ScriptsOnlyBuild:
     - PlayerController
     Assembly-CSharp.dll:
     - BasicSpawner
-    - FirstPersonCamera
     Fusion.Realtime.dll:
     - Fusion.Photon.Realtime.PhotonAppSettings
     Fusion.Runtime.dll:
@@ -85,17 +84,15 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1896}
+      Script: {instanceID: 1898}
     - Class: 114
-      Script: {instanceID: 3114}
+      Script: {instanceID: 3116}
     - Class: 114
-      Script: {instanceID: 4286}
+      Script: {instanceID: 4288}
     - Class: 114
-      Script: {instanceID: 5300}
+      Script: {instanceID: 5302}
     - Class: 114
-      Script: {instanceID: 5776}
-    - Class: 114
-      Script: {instanceID: 5798}
+      Script: {instanceID: 5778}
     - Class: 114
       Script: {instanceID: 5800}
     - Class: 114
@@ -103,17 +100,17 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 5804}
     - Class: 114
-      Script: {instanceID: 5814}
+      Script: {instanceID: 5806}
     - Class: 114
       Script: {instanceID: 5816}
     - Class: 114
-      Script: {instanceID: 7048}
+      Script: {instanceID: 5818}
     - Class: 114
-      Script: {instanceID: 7282}
+      Script: {instanceID: 7050}
     - Class: 114
-      Script: {instanceID: 7794}
+      Script: {instanceID: 7284}
     - Class: 114
-      Script: {instanceID: 24202}
+      Script: {instanceID: 7796}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 135
@@ -149,6 +146,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: PlayerSpawnerPrototype
+  - hash:
+      serializedVersion: 2
+      Hash: f6e205459a7557219ccb317cca1b7641
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: FirstPersonCamera
   - hash:
       serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
@@ -583,7 +586,7 @@ ScriptsOnlyBuild:
     className: ToggleRunnerProvideInput
   - hash:
       serializedVersion: 2
-      Hash: 95652e168d09dd4a3d5c5b456ee21360
+      Hash: 9a790b97d8ec932354ebd1941f33cc44
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: PlayerController
@@ -1271,12 +1274,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
-  - hash:
-      serializedVersion: 2
-      Hash: f6e205459a7557219ccb317cca1b7641
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: FirstPersonCamera
   platform: 19
   scenePathNames:
   - Assets/Scenes/GamePlay.unity

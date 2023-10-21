@@ -10,10 +10,22 @@ public class PlayerController : NetworkBehaviour
     private NetworkCharacterControllerPrototype networkCharacterController = null;
 
     [SerializeField]
+    private MeshRenderer[] _visuals;
+
+    [SerializeField]
     private Bullet bulletPrefab;
 
     [SerializeField]
-    private float moveSpeed = 15f;
+    private Camera _camera;
+
+    [SerializeField]
+    private float moveSpeed = 5f;
+
+    [SerializeField]
+    private float spinSpeed = 2f;
+
+    [Networked]
+    public NetworkButtons ButtonsPrevious { get; set; }
 
     private float rotate = 0f;
 
@@ -21,8 +33,24 @@ public class PlayerController : NetworkBehaviour
 
     private Vector3 moveVector = new Vector3(0.0f, 0.0f, 0.0f);
 
-    [Networked]
-    public NetworkButtons ButtonsPrevious { get; set; }
+
+    public override void Spawned()
+    {
+        if (Object.HasInputAuthority)
+        {
+            _camera.enabled = true;
+            _camera.GetComponent<AudioListener>().enabled = true;
+            foreach (var visual in _visuals)
+            {
+                visual.enabled = false;
+            }
+        }
+        else
+        {
+            _camera.enabled = false;
+            _camera.GetComponent<AudioListener>().enabled = false;
+        }
+    }
 
     public override void FixedUpdateNetwork()
     {
@@ -32,30 +60,33 @@ public class PlayerController : NetworkBehaviour
             var pressed = buttons.GetPressed(ButtonsPrevious);
             ButtonsPrevious = buttons;
 
-            if(buttons.IsSet(InputButtons.FORWARD)){
-                move=1;
-            }else if(buttons.IsSet(InputButtons.BACKWARD)){
-                move=-1;
-            }else{
-                move=0;
-            }
+            if (buttons.IsSet(InputButtons.FORWARD))
+                move = 1;
+            else if (buttons.IsSet(InputButtons.BACKWARD))
+                move = -1;
+            else
+                move = 0;
 
-            if(buttons.IsSet(InputButtons.LEFT)){
-                if(rotate==0f){
-                    rotate=359.9f;
-                }else{
-                    rotate=rotate-0.1f;
-                }
-            }else if(buttons.IsSet(InputButtons.RIGHT)){
-                if(rotate==359.9f){
-                    rotate=0f;
-                }else{
-                    rotate=rotate+0.1f;
-                }
+            if (buttons.IsSet(InputButtons.LEFT))
+                if (rotate <= 0f)
+                    rotate = 360f - spinSpeed;
+                else
+                    rotate = rotate - spinSpeed;
+            else if (buttons.IsSet(InputButtons.RIGHT))
+                if (rotate >= 360f - spinSpeed)
+                    rotate = 0f;
+                else
+                    rotate = rotate + spinSpeed;
+                    
+            if (move == 0)
+            {
+                transform.rotation = Quaternion.Euler(0, (float)rotate, 0);
             }
-
-            moveVector = new Vector3((float)(move * Math.Sin(rotate)), 0.0f, (float)(move * Math.Cos(rotate)));
-            networkCharacterController.Move(moveSpeed * moveVector * Runner.DeltaTime);
+            else
+            {
+                moveVector = new Vector3(move * Mathf.Sin(rotate * Mathf.Deg2Rad), 0.0f, move * Mathf.Cos(rotate * Mathf.Deg2Rad));
+                networkCharacterController.Move(moveSpeed * moveVector * Runner.DeltaTime);
+            }
 
             if (pressed.IsSet(InputButtons.JUMP))
             {

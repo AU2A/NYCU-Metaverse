@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
-  bulletSpeed: 5
+  bulletSpeed: 10
 --- !u!54 &1887498639481486736
 Rigidbody:
   m_ObjectHideFlags: 0

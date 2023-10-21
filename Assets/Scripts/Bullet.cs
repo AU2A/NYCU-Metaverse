@@ -9,7 +9,7 @@ public class Bullet : NetworkBehaviour
     private TickTimer life { get; set; }
 
     [SerializeField]
-    private float bulletSpeed = 5f;
+    private float bulletSpeed = 10f;
 
     public override void Spawned()
     {
