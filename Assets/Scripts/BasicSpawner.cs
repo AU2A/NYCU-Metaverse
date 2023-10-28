@@ -5,6 +5,7 @@ using Fusion;
 using Fusion.Sockets;
 using System;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
 {
@@ -13,6 +14,10 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
 
     [SerializeField]
     private NetworkPrefabRef playerPrefab;
+
+    
+    [SerializeField] 
+    private InputActionReference RightThumbstick;
 
     private Dictionary<PlayerRef, NetworkObject> playerList = new Dictionary<PlayerRef, NetworkObject>();
 
@@ -54,10 +59,17 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     public void OnInput(NetworkRunner runner, NetworkInput input)
     {
         var data = new NetworkInputData();
+        // Debug.Log(RightThumbstick.action.ReadValue<Vector2>());
+
+        // data.buttons.Set(InputButtons.FORWARD, RightThumbstick.action.ReadValue<Vector2>()[1]>0.2);
+        // data.buttons.Set(InputButtons.BACKWARD, RightThumbstick.action.ReadValue<Vector2>()[1]<-0.2);
+        // data.buttons.Set(InputButtons.LEFT, RightThumbstick.action.ReadValue<Vector2>()[0]<-0.2);
+        // data.buttons.Set(InputButtons.RIGHT, RightThumbstick.action.ReadValue<Vector2>()[0]>0.2);
         data.buttons.Set(InputButtons.FORWARD, Input.GetKey(KeyCode.W));
         data.buttons.Set(InputButtons.BACKWARD, Input.GetKey(KeyCode.S));
         data.buttons.Set(InputButtons.LEFT, Input.GetKey(KeyCode.A));
         data.buttons.Set(InputButtons.RIGHT, Input.GetKey(KeyCode.D));
+        
 
         data.buttons.Set(InputButtons.JUMP, Input.GetKey(KeyCode.Space));
         data.buttons.Set(InputButtons.FIRE, Input.GetKey(KeyCode.Mouse0));

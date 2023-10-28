@@ -1,0 +1,34 @@
+{
+    "name": "Action",
+    "maps": [
+        {
+            "name": "VR",
+            "id": "ff2cb734-effe-4355-86d3-1095e347357c",
+            "actions": [
+                {
+                    "name": "test",
+                    "type": "Button",
+                    "id": "9d786f3a-9fd0-4181-9a7b-eb169749bd80",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d2c65862-4819-4208-9ae4-be5fb66e4a1a",
+                    "path": "<XRController>{RightHand}/{SecondaryAction}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "test",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

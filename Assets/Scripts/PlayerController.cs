@@ -12,17 +12,17 @@ public class PlayerController : NetworkBehaviour
     [SerializeField]
     private MeshRenderer[] _visuals;
 
-    [SerializeField]
-    private Bullet bulletPrefab;
+    // [SerializeField]
+    // private Bullet bulletPrefab;
 
     [SerializeField]
     private Camera _camera;
 
     [SerializeField]
-    private float moveSpeed = 5f;
+    private float moveSpeed = 10f;
 
     [SerializeField]
-    private float spinSpeed = 2f;
+    private float spinSpeed = 5f;
 
     [Networked]
     public NetworkButtons ButtonsPrevious { get; set; }
@@ -30,6 +30,8 @@ public class PlayerController : NetworkBehaviour
     private float rotate = 0f;
 
     private int move = 0;
+
+    // private Vector3 myPos = new Vector3(0.0f, 0.0f, 0.0f);
 
     private Vector3 moveVector = new Vector3(0.0f, 0.0f, 0.0f);
 
@@ -68,39 +70,36 @@ public class PlayerController : NetworkBehaviour
                 move = 0;
 
             if (buttons.IsSet(InputButtons.LEFT))
-                if (rotate <= 0f)
-                    rotate = 360f - spinSpeed;
+                if (rotate <= -180f)
+                    rotate = 180f - spinSpeed;
                 else
                     rotate = rotate - spinSpeed;
             else if (buttons.IsSet(InputButtons.RIGHT))
-                if (rotate >= 360f - spinSpeed)
-                    rotate = 0f;
+                if (rotate >= 180f - spinSpeed)
+                    rotate = -180f;
                 else
                     rotate = rotate + spinSpeed;
-                    
-            if (move == 0)
-            {
-                transform.rotation = Quaternion.Euler(0, (float)rotate, 0);
-            }
-            else
-            {
-                moveVector = new Vector3(move * Mathf.Sin(rotate * Mathf.Deg2Rad), 0.0f, move * Mathf.Cos(rotate * Mathf.Deg2Rad));
-                networkCharacterController.Move(moveSpeed * moveVector * Runner.DeltaTime);
-            }
+
+            // Debug.Log(transform.rotation);
+            moveVector = new Vector3(move * Mathf.Sin(rotate * Mathf.Deg2Rad), 0.0f, move * Mathf.Cos(rotate * Mathf.Deg2Rad));
+            // transform.position+=moveSpeed * moveVector * Runner.DeltaTime;
+            networkCharacterController.Move(moveSpeed * moveVector * Runner.DeltaTime);
+
+
 
             if (pressed.IsSet(InputButtons.JUMP))
             {
                 networkCharacterController.Jump();
             }
 
-            if (pressed.IsSet(InputButtons.FIRE))
-            {
-                Runner.Spawn(
-                    bulletPrefab,
-                    transform.position + transform.TransformDirection(Vector3.forward),
-                    Quaternion.LookRotation(transform.TransformDirection(Vector3.forward)),
-                    Object.InputAuthority);
-            }
+            // if (pressed.IsSet(InputButtons.FIRE))
+            // {
+            //     Runner.Spawn(
+            //         bulletPrefab,
+            //         transform.position + transform.TransformDirection(Vector3.forward),
+            //         Quaternion.LookRotation(transform.TransformDirection(Vector3.forward)),
+            //         Object.InputAuthority);
+            // }
         }
     }
 }

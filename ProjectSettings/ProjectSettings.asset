@@ -642,7 +642,9 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Standalone: FUSION_WEAVER
+    Android: USE_INPUT_SYSTEM_POSE_CONTROL
+    Standalone: FUSION_WEAVER;USE_INPUT_SYSTEM_POSE_CONTROL
+    Windows Store Apps: USE_INPUT_SYSTEM_POSE_CONTROL
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
@@ -748,7 +750,7 @@ PlayerSettings:
   hmiLogStartupTiming: 0
   hmiCpuConfiguration: 
   apiCompatibilityLevel: 6
-  activeInputHandler: 0
+  activeInputHandler: 2
   windowsGamepadBackendHint: 0
   cloudProjectId: 
   framebufferDepthMemorylessMode: 0
